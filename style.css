@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+ 
 }
 .hide{
     display: none;
@@ -11,6 +11,22 @@
     height: 70px;
     background: red;
     position: absolute;
-    left: 350px;
-    top: 120px;
+    bottom: 120px;
+}
+.lines{
+    width: 10px;
+    height: 100px;
+    background: rgb(159, 159, 230);
+    position: absolute;
+    margin: 195px;
+}
+.gameArea{
+    background-color: #57606f;
+    width: 400px;
+    height: 100vh;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+
+
 }

@@ -7,7 +7,7 @@ const gameArea = document.querySelector(".gameArea");
 // console.log(score);
 // console.log(startScreen);
 // console.log(gameArea);
-let player = { speed: 5 };
+let player = { speed: 4 };
 const keys = {
   ArrowUp: false,
   ArrowDown: false,
@@ -31,17 +31,24 @@ function keyUp(e) {
   // console.log("key up",e.key);
   console.log(keys);
 }
+// move lines
+function moveLines(){
+    let lines = document.querySelectorAll('.lines')
+}
+
 function gamePlay() {
   console.log("game is  playing...");
   let car  = document.querySelector('.car')
-  car.style.top = player.y +"px"
-  car.style.left = player.x +"px"
+  let road = gameArea.getBoundingClientRect() ; // get all positions of element
+  console.log(road)
   if (player.start) {
-    if (keys.ArrowUp) {   player.y -= player.speed;}
-    if (keys.ArrowDown) {player.y += player.speed;}
-    if (keys.ArrowLeft) {player.x -= player.speed;}
-    if (keys.ArrowRight) {player.x += player.speed;}
-
+      if (keys.ArrowUp && player.y >(road.top + 200) ) {   player.y -= player.speed;}
+      if (keys.ArrowDown && player.y<(road.bottom-110)) {player.y += player.speed;}
+      if (keys.ArrowLeft && player.x > 4 ) {player.x -= player.speed;}
+      if (keys.ArrowRight && player.x <(road.width-50) ) {player.x += player.speed;}
+      
+      car.style.top = player.y +"px"
+      car.style.left = player.x +"px"
     window.requestAnimationFrame(gamePlay);
   }
 }
@@ -51,6 +58,16 @@ function Start() {
   player.start = true;
   console.log("game started");
   window.requestAnimationFrame(gamePlay);
+  for (x = 0;x<5;x++) {
+      let roadLine = document.createElement('div');
+      roadLine.setAttribute('class','lines');
+      roadLine.style.top = (x*120)+"px";
+      gameArea.appendChild(roadLine);
+   
+    
+  }
+
+   
   let car = document.createElement("div");
   car.setAttribute("class", "car");
   //   car.innerText = "hey i am new attribute"
